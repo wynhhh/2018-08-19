@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>获取时间</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+      var today=new Date(),
+          month=today.getMonth()+1,//月
+          date=today.getDate()-1;//日
+  </script>
+ </head>
+ <body>
+    <div class="main">
+        <div class="header">
+            <h1>预约系统欢迎你</h1>
+        </div>
+        <div class="one">
+            <select id="project" name="project">
+                <option value="project1">项目一</option>
+                <option value="project2">项目二</option>
+            </select></br>
+
+            <select id="gettime" name="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select></br>
+        </div>
+
+          <div class="two">
+              <form id="functionForm" method="post" action="">
+                  <table class="table table-bordered table-hover" id="table" cellspacing="0">
+                      <tr class="time1">
+                          <!--<th></th>-->
+                          <td>8:00-10:00</td>
+                          <!--<td><input type="hidden"  name="buyNumber" value="40" >8:00-10:00</td>-->
+                          <td><input type="radio" id="checkAll" name="checkAll" /></td>
+                      </tr>
+
+                      <tr class="time2">
+                          <!--<th></th>-->
+                          <td>10:00-12:00</td>
+                          <!--<td><input type="hidden"  name="buyNumber" value="40" >10:00-12:00</td>-->
+                          <td><input type="radio" id="checkAll" name="checkAll" /></td>
+                      </tr>
+
+                      <tr class="time3">
+                          <!--<th></th>-->
+                          <td>14:00-16:00</td>
+                          <!--<td><input type="hidden"  name="buyNumber" value="40" >14:00-16:00</td>-->
+                          <td><input type="radio" id="checkAll" name="checkAll" /></td>
+                      </tr>
+
+                      <tr class="time4">
+                          <!--<th></th>-->
+                          <td>16:00-18:00</td>
+                          <!--<td><input type="hidden"  name="buyNumber" value="40" >16:00-18:00</td>-->
+                          <td><input type="radio" id="checkAll" name="checkAll" /></td>
+                      </tr>
+                  </table>
+              </form>
+          </div>
+
+        <div class="three">
+            <form id="sure">
+                <input type="submit" id="btnSubmit"  class="btn btn-danger btn-xs" value="确   定" >
+            </form>
+        </div>
+    </div>
+ <script>
+     window.onload=init;
+     function init(){
+         var gettime = document.getElementById("gettime");
+         var index=gettime.selectedIndex;
+         setTimeout(function(){
+             for(var i=0;i<5;i++)
+             {
+                  date++;
+                  gettime.options[i].text=month+"月"+date+"日";
+             }
+         },1)
+         var btn=document.getElementById("btnSubmit"),
+             table=document.getElementById("table");
+         gettime.onchange=function(){
+             table.style.display='table';
+             table.style.width="240px";
+             table.style.height="130px";
+             btn.style.display='inline';
+             btn.style.textAlign='center';
+         }
+         var sure=document.getElementById("sure");
+         sure.onsubmit=function()
+         {
+             table.style.display='none';
+             btn.style.display='none';
+         }
+         btn.onclick=function () {
+             var checks=document.forms[0].checkAll;
+             for(var j=0;j<checks.length;j++)
+             {
+                 if(checks[j].checked)     {return;}
+                 else{
+                     alert("请选择预约时间！")      ;
+                 }
+             }
+         }
+     }
+
+ </script>
+ </body>
+</html>
